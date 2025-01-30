@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import { FaArrowCircleRight, FaTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ChangeAdrres from "./ChangeAdrres";
-import Modal from "./Modal";
+import { decreaseQuantity, increaseQuantity, removeFromCart } from "../redux/cartSlice";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const cart = useSelector((state) => state.cart);
-  const [address, setAddress] = useState("main street, 001");
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChekout = () => {
     navigate("checkout");
@@ -17,9 +13,9 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
   }
 
 
-  //w-[35vw]
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -121,12 +117,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 <div></div>
               </div>
             </div>
-            <Modal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-              <ChangeAdrres
-                setAddress={setAddress}
-                setIsModalOpen={setIsModalOpen}
-              />
-            </Modal>
           </>
         ) : null}
       </div>
